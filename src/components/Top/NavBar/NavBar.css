@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
+
+#navbar {
+    height: 80px;
+
+    display: flex;
+    justify-content: flex-end;
+    place-items: center;
+}
+
+.navButton {
+    height: 40px;
+    margin-right: 20px;
+
+    border-radius: 5px;
+    border: none;
+    background-color: #FF4A49;
+
+    color: white;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 2px;
+
+    transition: all 200ms;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    place-items: center;
+}
+
+.navButton:hover, .navButton:hover * {
+    background-color: white;
+    color: #FF4A49;
+}
+
+.navButton:hover svg {
+    color: #FF4A49;
+    fill: #FF4A49;
+    stroke: #FF4A49;
+}
+
+.status_button {
+    width: 100px;
+}
+
+.login_button {
+    width: 50px;
+}
