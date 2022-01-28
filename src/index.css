@@ -1,5 +1,6 @@
 :root {
     --transition-time-long: 400ms;
+    --transition-time-short: 200ms;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -56,8 +57,28 @@ table {
     min-height: 100vh;
     height: 100%;
     background-image: url("./assets/mauerfall2.png");
-    /* background-color: black; */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
+
+ /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #555;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #FF4A49;
+} 

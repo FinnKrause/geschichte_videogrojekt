@@ -5,13 +5,14 @@ import ContentTop from './ContentTop';
 
 
 interface Props {
-
+    isLogin: boolean;
+    setLogin: (newval: boolean) => void
 }
 
 const Top: React.FC<Props> = (Props): JSX.Element => {
     return (
         <div id="TOP">
-            <NavBar></NavBar>
+            <NavBar isLogin={Props.isLogin} setLogin={Props.setLogin}></NavBar>
             <ContentTop />
         </div>
     )

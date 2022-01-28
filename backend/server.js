@@ -1,73 +1,30 @@
-  const express = require("express");
-  const app = express();
-  const jwt = require("jsonwebtoken");
-  const { default: axios } = require("axios");
-  
-  const password = "jsonwebtoken4finn";
-  
-  app.use(express.static("public"));
-  app.use((req, res, next) => {
-    res.append("Access-Control-Allow-Origin", ["*"]);
-    next();
-  });
+const express = require("express");
+const app = express();
 
-  const getExpireDate = (currenttime) => {
-    return currenttime + 10 * 60 * 1000;
-  };
-  
-  app.get("/login/:name/:passwd", (req, res) => {
-    let isvalid = false;
-    const ip = (req.headers["x-real-ip"] || "NO-IP").split(",")[0];
-    timestamp = Date.now();
-    var today = new Date();
-    var date = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    const name = req.params.name.replace(":", "");
-    const passwd = req.params.passwd.replace(":", "");
-    if (name !== "secret" || passwd !== password) {
-      
-        isvalid = false;
-      res.json({
-        valid: false,
-        token: undefined,
-      });
+app.use(express.static("public"));
+app.use((req, res, next) => {
+  res.append("Access-Control-Allow-Origin", ["*"]);
+  next();
+});
 
-    } else {
-      isvalid = true;
-      const token = jwt.sign(
-        { name: name, passwd: passwd, eat: getExpireDate(timestamp) },
-        "lkjdsalkjfdsalkjfdsalkjdsa"
-      );
-      res.json({
-        valid: true,
-        token: token,
-        eat: getExpireDate(timestamp),
-      });
-    }
-  
-  });
-  
-  app.get("/validate:token", (req, res) => {
-    timestamp = Date.now();
-    var today = new Date();
-    var date =
-      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+const path = "/NAS/Finn/Schule/10C/Geschichte/"
 
-    const valid = jwt.verify(
-      req.params.token.replace(":", ""),
-      "lkjdsalkjfdsalkjfdsalkjdsa",
-      (err, data) => {
-        if (err) {
-          return "false";
-        } else {
-          if (data.eat && data.eat > timestamp) {
-            return "true";
-          } else {
-            return "false";
-          }
-        }
-      }
-    );
-}
+const g = (dateiname) => path+dateiname
+
+  app.get("/:fileName/:DiggaIchWill", (req, res) => {
+  const fileName = req.params.fileName.replace(":", "");
+  switch(fileName) {
+    case "abhaken": res.sendFile(g("Abhaken.pdf")); break;
+    case "eltern": res.sendFile(g("Einverstaendnis_Mitwirkung_Foto_Film_Umbruchszeiten.pdf")); break;
+    case "lehrer": res.sendFile(g("Einverständniserklärung-der-Eltern_gesetzlichen-Vertretung.pdf")); break;
+    case "brd": res.sendFile(g("Fragenkatalog - BRD.pdf")); break;
+    case "ddr": res.sendFile(g("Fragenkatalog - DDR.pdf")); break;
+    case "full": res.sendFile(g("Fragenkatalog.pdf")); break;
+    case "tipps": res.sendFile(g("Tipps_Zeitzeugengespräche_Umbruchszeiten.pdf")); break;
+    default: res.send("Digga du Huan versuch ned meine Seite zu hacken! Piss dich!"); break;
+  }
   
-app.listen(5004, console.log("JWT RUNNING"));
+})
+
+app.listen(5009, console.log("Geschichte Running"));
   

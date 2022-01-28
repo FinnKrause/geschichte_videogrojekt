@@ -6,6 +6,7 @@
     display: flex;
     justify-content: flex-end;
     place-items: center;
+    position: relative;
 }
 
 .navButton {
@@ -47,3 +48,41 @@
 .login_button {
     width: 50px;
 }
+
+.LoginForm {
+    position: absolute;
+    background: linear-gradient(45deg, #FB4F40,#FF4A49);
+    height: 15vh;
+    width: 20vw;
+    top: 80px;
+    right: 20px;
+    padding: 10px 30px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    z-index: 10;
+}
+
+.LoginForm h1 {
+    font-size: 30px;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+}
+
+#NamenInput {
+    height: 40px;
+    border-radius: 6px;
+    margin-top: 20px;
+    font-size: 17px;
+    border: none;
+    font-family: 'Oswald', sans-serif;
+    text-indent: 10px;
+}
+
+#NamenInput:focus, #NamenInput:active {
+    outline: none;
+    font-family: 'Oswald', sans-serif;
+} 
