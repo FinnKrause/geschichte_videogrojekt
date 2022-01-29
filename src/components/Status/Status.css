@@ -59,11 +59,12 @@
     justify-content: center;
     place-items: center;
     flex-wrap: wrap;
+
 }
 
 .Dokument {
     height: 150px;
-    margin: 20px 30px;
+    margin: 20px 20px;
     width: 40%;
     max-width: 555px;
     min-width: 400px;
@@ -71,7 +72,7 @@
     background: #030c2f;
     transition: all var(--transition-time-short);
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
