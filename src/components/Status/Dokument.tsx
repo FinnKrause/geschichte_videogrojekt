@@ -18,9 +18,6 @@ const Dokument:React.FC<Props> = (Props):JSX.Element => {
                     window.open(Props.downloadLink, '_blank');
                 }}>Download</button>
             </div>
-            <div className="right">
-                
-            </div>
         </div>
     );
 }

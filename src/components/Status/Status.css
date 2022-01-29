@@ -12,21 +12,21 @@
 }
 
 .TopBanner {
-    height: 30vh;
+    height: 20vh;
     width: 100%;
 
     display: grid;
     place-items: center;
     font-family: 'Oswald', sans-serif;
     
-    background-color: rgba(0,0,0,.5);
     position: relative;
 }
+
 .moveUp {
     background-position: center -200px;
 }
 .TopBanner h1 {
-    font-size: 80px;
+    font-size: 4rem;
     letter-spacing: 8px;
     color: white;
 }
@@ -41,7 +41,6 @@
 }
 
 .DokumenteWrapper {
-    /* height: calc(70vh - 20px); */
     width: 100%;
     margin-top: 20px;
     display: grid;
@@ -52,7 +51,7 @@
 
 .Dokumente {
     height: 50vh;
-    width: 85%;
+    width: 100%;
     height: 100%;
     overflow: auto;
     
@@ -66,11 +65,13 @@
     height: 150px;
     margin: 20px 30px;
     width: 40%;
+    max-width: 555px;
     min-width: 400px;
     border-radius: 20px;
     background: #030c2f;
     transition: all var(--transition-time-short);
     display: flex;
+    justify-content: flex-start;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
@@ -82,7 +83,7 @@
     display: flex;
     place-items: center;
     justify-content: center;
-    flex: 1;
+    height: 100%;
 }
 
 .Vorschaubild {
@@ -98,8 +99,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    flex: 2;
+    flex: 1;
+    width: 100%;
 
+}
+
+.middle > * {
+    margin-left: 10px;
 }
 
 .middle h1 {
@@ -129,7 +135,7 @@
 }
 
 .right {
-    margin-left: 30px;
+    min-width: 30px;
 }
 
 
@@ -138,14 +144,14 @@
 /*----------------------------------------------------------*/
 
 .InterviewTable {
-    margin-top: 50px;
     width: 100%;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     place-items: center;
     justify-content: center;
     position: relative;
+
+
 }
 
 .FortschrittLabel {
@@ -154,13 +160,66 @@
     font-family: 'Oswald', sans-serif;
 }
 
+.contentArea {
+    background-color: #252627;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+
+        border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
 .Tabelle {
-    background-image: url("../../assets/Tabelle.png");
-    max-height: 450px;
-    height: 90%;
+    width: 80%;
     aspect-ratio: 21/9;
-    background-size: cover;
+
     margin-top: 40px;
     margin-bottom: 40px;
 }
 
+@media only screen and (max-width: 600px) {
+    .DokumenteWrapper {
+        height: calc(70vh - 20px);
+    }
+}
+
+@media all and (max-width: 480px) {
+    .Dokument {
+        min-width: 100px;
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;
+    }
+    .Dokumente {
+        width: 100%;
+    }
+    .TopBanner h1 {
+        font-size: 1rem;
+    }
+}
+
+@media all and (max-width: 440px) {
+    .Vorschaubild {
+        max-height: 80px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .Dokument {
+        flex-direction: column;
+        justify-content: space-evenly;
+        min-height: 200px;
+        height: fit-content;
+    }
+    .middle {
+        place-items: center;
+        margin-bottom: 10px;
+    }
+    .middle h1 {
+        font-size: 20px;
+    }
+    .Tabelle {
+        width: 95%;
+    }
+}

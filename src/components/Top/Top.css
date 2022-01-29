@@ -4,16 +4,18 @@
 #top {
     width: 100%;
     min-height: calc(100% - 80px);
+    height: 100%;
     display: flex;
     justify-content: center;
     place-items: center;
     padding: 0;
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
 }
 
 .content {
-    height: 80vh;
+    min-height: calc(100vh - 80px);
     width: 80vw;
 
     display: flex;

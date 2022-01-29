@@ -48,7 +48,7 @@ const RealStatusSeite:React.FC = ():JSX.Element => {
                 <h1>PDF's</h1>
                 <p id="signedinas">Angemeldet als: {user.substr(0,1).toUpperCase()+user.substr(1,user.length)}</p>
             </div>
-            <div className="DokumenteWrapper">
+            <div className="DokumenteWrapper contentArea">
                 <div className="Dokumente">
                     {Dokumente.map((i, idx) => {
                         return <Dokument key={idx} name={i.name} downloadLink={i.downloadLink}></Dokument>
@@ -59,7 +59,9 @@ const RealStatusSeite:React.FC = ():JSX.Element => {
                 <div className="TopBanner">
                     <h1 className="FortschrittLabel">Interview-Fortschritt</h1>
                 </div>
-                <div className="Tabelle"></div>
+                <div className="contentArea">
+                    <img src={require("../../assets/Tabelle.png")} alt="" className="Tabelle"></img>
+                </div>
             </div>
         </div>
     );
