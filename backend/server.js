@@ -7,7 +7,7 @@ app.use((req, res, next) => {
   next();
 });
 
-const path = "/NAS/Finn/Schule/10C/Geschichte/"
+const path = "/NAS/Finn/Schule/10C/Geschichte/Film/DokumenteForDownload/"
 
 const g = (dateiname) => path+dateiname
 
@@ -21,6 +21,7 @@ const g = (dateiname) => path+dateiname
     case "ddr": res.sendFile(g("Fragenkatalog - DDR.pdf")); break;
     case "full": res.sendFile(g("Fragenkatalog.pdf")); break;
     case "tipps": res.sendFile(g("Tipps_Zeitzeugengespräche_Umbruchszeiten.pdf")); break;
+    case "checkliste": res.sendFile(g("Interview Checkliste.pdf")); break;
     default: res.send("Digga du Huan versuch ned meine Seite zu hacken! Piss dich!"); break;
   }
   

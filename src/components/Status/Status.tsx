@@ -40,6 +40,7 @@ const RealStatusSeite:React.FC = ():JSX.Element => {
         {name: "Fragenkatalog - DDR", downloadLink: "https://api.klasse10c.de/:ddr/Fragenkatalog - DDR"},
         {name: "Fragenkatalog - Komplett", downloadLink: "https://api.klasse10c.de/:full/Fragenkatalog - Komplett"},
         {name: "Tipps für das Interview", downloadLink: "https://api.klasse10c.de/:tipps/Tipps für das Interview"},
+        {name: "Checkliste vor Dreh", downloadLink: "https://api.klasse10c.de/:checkliste/Interview Checkliste"},
     ]
 
     return (
