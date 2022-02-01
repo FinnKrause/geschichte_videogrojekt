@@ -146,8 +146,6 @@
     place-items: center;
     justify-content: center;
     position: relative;
-
-
 }
 
 .FortschrittLabel {
@@ -157,13 +155,11 @@
 }
 
 .contentArea {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #252627;
     width: 100%;
     display: flex;
     justify-content: center;
     place-items: center;
-
-    border-radius: 50px;
 }
 
 .Tabelle {

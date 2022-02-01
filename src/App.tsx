@@ -22,8 +22,6 @@ const App: React.FC = (): JSX.Element => {
     setLogin(true);
   }, [])
 
-
-
   return (
     <Router>
       <Routes>
