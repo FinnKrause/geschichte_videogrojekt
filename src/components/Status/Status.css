@@ -170,6 +170,29 @@
     margin-bottom: 40px;
 }
 
+table {
+    width: 80%;
+    text-align: center;
+    background-color: #030c2f;
+    min-height: 70vh;
+}
+
+thead tr *, tbody tr * {
+    color: white;
+    border: 2px solid rgb(100, 100, 100);
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    vertical-align: middle;
+}
+
+tr {
+    height: 50px;
+}
+
+#notbordered {
+    border: none;
+}
+
 @media only screen and (max-width: 600px) {
     .DokumenteWrapper {
         height: calc(70vh - 20px);

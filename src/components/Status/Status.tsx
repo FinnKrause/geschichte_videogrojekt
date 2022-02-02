@@ -2,12 +2,23 @@ import React, { useEffect, useState } from "react";
 import "../Status/Status.css";
 import {allowed} from "../../App"
 import Dokument from "./Dokument";
+import Axios from "axios";
 
 
 interface DokumentInterface {
     name: string;
     downloadLink: string;
 }
+
+interface Lehrer {
+    Name: string;
+    InterviewTermin: string|undefined;
+    angefragt: boolean;
+    termin_fest: boolean;
+    abgedreht: boolean;
+}
+
+const good = <svg xmlns="http://www.w3.org/2000/svg" id="notbordered" width="30" height="30" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#00b341" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" /></svg>
 
 const Status: React.FC = (): JSX.Element => {
     const [loading, setLoding] = useState<boolean>(true);
@@ -23,7 +34,7 @@ const Status: React.FC = (): JSX.Element => {
     return (
         <>
             {!loading && <div>
-                <RealStatusSeite key={1}></RealStatusSeite>
+                <RealStatusSeite ></RealStatusSeite>
             </div>}
             {loading && <h1>Loading...</h1>}
         </>
@@ -32,6 +43,8 @@ const Status: React.FC = (): JSX.Element => {
 
 const RealStatusSeite:React.FC = ():JSX.Element => {
     const user = localStorage.getItem("user") || "You hacked me! Pls dont crash my Pi!";
+    const [tableData, setTableData] = useState<Lehrer[]|undefined>();
+
     const Dokumente:DokumentInterface[] = [
         {name: "Abhakblatt für Interviews", downloadLink: "https://api.klasse10c.de/:abhaken/Abhaken"},
         {name: "Anmeldeformular (Schüler)", downloadLink: "https://api.klasse10c.de/:lehrer/Anmeldeformular (Schüler)"},
@@ -42,6 +55,13 @@ const RealStatusSeite:React.FC = ():JSX.Element => {
         {name: "Tipps für das Interview", downloadLink: "https://api.klasse10c.de/:tipps/Tipps für das Interview"},
         {name: "Checkliste vor Dreh", downloadLink: "https://api.klasse10c.de/:checkliste/Interview Checkliste"},
     ]
+
+    useEffect(() => {
+        Axios.get("https://api.klasse10c.de//getTableData/"+localStorage.getItem("user")).then(response => {
+            setTableData(response.data)
+        })
+    }, [])
+
 
     return (
         <div className="StatusSeite">
@@ -61,7 +81,28 @@ const RealStatusSeite:React.FC = ():JSX.Element => {
                     <h1 className="FortschrittLabel">Interview-Fortschritt</h1>
                 </div>
                 <div className="contentArea">
-                    <img src={require("../../assets/Tabelle.png")} alt="" className="Tabelle"></img>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th id="notbordered"></th>
+                                <th>Angefragt</th>
+                                <th>Termin fest</th>
+                                <th>Abgedreht</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {tableData?.map((i, idx) => {
+                                return <tr key={idx}>
+                                    <td>{i.Name}</td>
+                                    <td>{i.angefragt ? good : ""}</td>
+                                    <td>{i.termin_fest ? i.InterviewTermin : ""}</td>
+                                    <td>{i.abgedreht ? good : ""}</td>
+                                </tr>
+                            })}
+                        </tbody>
+
+                    </table>
                 </div>
             </div>
         </div>
