@@ -1,7 +1,7 @@
 [
         {"Name": "Fischer", "InterviewTermin": "Freitag 4.2 11:30", "abgedreht": false, "angefragt": true, "termin_fest": true},
         {"Name": "Möschl", "InterviewTermin": "Dienstag 1.2 13:00", "abgedreht": true, "angefragt": true, "termin_fest": true},
-        {"Name": "Görtz", "InterviewTermin": "Donnerstag 3.2 15:30", "abgedreht": false, "angefragt": true, "termin_fest": true},
+        {"Name": "Görtz", "InterviewTermin": "Donnerstag 3.2 15:30", "abgedreht": true, "angefragt": true, "termin_fest": true},
         {"Name": "Morgenroth", "InterviewTermin": "Mittwoch 2.2 14:30", "abgedreht": true, "angefragt": true, "termin_fest": true},
         {"Name": "Sundhaus", "InterviewTermin": "Mittwoch 9.2 14:30", "abgedreht": false, "angefragt": true, "termin_fest": true},
         {"Name": "Ranke", "InterviewTermin": "Dienstag 8.2 13:20", "abgedreht": false, "angefragt": true, "termin_fest": true},

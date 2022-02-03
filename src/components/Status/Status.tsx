@@ -3,6 +3,7 @@ import "../Status/Status.css";
 import {allowed} from "../../App"
 import Dokument from "./Dokument";
 import Axios from "axios";
+import NewBlogPostForm from "./NewBlogPostForm";
 
 
 interface DokumentInterface {
@@ -57,7 +58,7 @@ const RealStatusSeite:React.FC = ():JSX.Element => {
     ]
 
     useEffect(() => {
-        Axios.get("https://api.klasse10c.de//getTableData/"+localStorage.getItem("user")).then(response => {
+        Axios.get("https://api.klasse10c.de/getTableData/"+localStorage.getItem("user")).then(response => {
             setTableData(response.data)
         })
     }, [])
@@ -81,7 +82,7 @@ const RealStatusSeite:React.FC = ():JSX.Element => {
                     <h1 className="FortschrittLabel">Interview-Fortschritt</h1>
                 </div>
                 <div className="contentArea">
-                    <table>
+                    <table className="marginMore">
                         <thead>
                             <tr>
                                 <th id="notbordered"></th>
@@ -105,6 +106,7 @@ const RealStatusSeite:React.FC = ():JSX.Element => {
                     </table>
                 </div>
             </div>
+            <NewBlogPostForm></NewBlogPostForm>
         </div>
     );
 }

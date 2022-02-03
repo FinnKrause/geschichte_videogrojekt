@@ -1,0 +1,116 @@
+.NewBlogWrapper {
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    justify-content: space-evenly;
+    padding-bottom: 30px;
+}
+
+.HeaderBlog {
+    font-size: 30px;
+    margin-top: 20px;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+}
+
+.Inputs {
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    width: 100%;
+}
+
+.new {
+    height: 100px;
+    background-color: transparent;
+    outline: none;
+    border: 1px solid white;
+    color: white;
+    border-radius: 5px;
+
+    text-indent: 10px;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px 0px;
+}
+
+.new::-webkit-input-placeholder {
+    color: rgb(97, 97, 97);
+}
+
+#ERROR {
+    color: red;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+#STATUS {
+    color: white;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+    font-size: 15px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+#Überschrift {
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    text-align: center;
+    font-weight: 900;
+}
+
+#Beschreibung {
+}
+
+#File {
+    position: relative;
+    height: 60px;
+    margin-bottom: 3px;
+}
+
+#File::before {
+    content: "Upload Foto";
+    background-color: #252627;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+#consent {
+    font-family: 'Oswald', sans-serif;
+}
+
+.Check {
+    display: flex;
+    color: white;
+    justify-content: center;
+    place-items: center;
+    height: 40px;
+}
+
+#send {
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    margin: 0;
+}

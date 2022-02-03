@@ -1,12 +1,20 @@
 const express = require("express");
 const fs = require("fs");
 const app = express();
+const cors = require("cors");
+const bodyParser = require("body-parser")
+
+app.use(cors());
+app.use(bodyParser.json({limit: '5mb', extended: true}));
+app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
+app.use(bodyParser.text({limit: '5mb', extended: true}));
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+})
 
 app.use(express.static("public"));
-app.use((req, res, next) => {
-  res.append("Access-Control-Allow-Origin", ["*"]);
-  next();
-});
 
 const path = "/NAS/Finn/Schule/10C/Geschichte/Film/DokumenteForDownload/"
 const allowed = ["alena" , "arda" , "carla" , "christian" , "christoph" , "dulce" , "elena" , "finn" , "marthinus" , "hendrik" , "leopold" , "lucas" , "marleen" , "marlene" , "moritz" , "sanna" , "sophia", "florian"]
@@ -21,6 +29,29 @@ app.get("/getTableData/:Person", (req, res) => {
     res.json(JSON.parse(fs.readFileSync("./table.json", "utf-8")))
   }
   else res.json({error: true})
+})
+
+app.post("/createblogpost/:person", (req, res) => {
+  console.log("GOT")
+  if (!allowed.includes(req.params.person.toLowerCase().replace(":", ""))) return;
+  const oldData = JSON.parse(fs.readFileSync("./blogposts.json", "utf-8"))
+
+  oldData.push(req.body);
+  fs.writeFileSync("./blogposts.json", JSON.stringify(oldData));
+  res.send("DONE")
+})
+
+app.post("/setTableData:/Person", (req, res) => {
+  const newData = req.body;
+    if (allowed.includes(req.params.Person.replace(":", ""))) {
+    fs.writeFileSync(JSON.stringify(newData, null, 2));
+    res.send("DONE")  
+  }
+  res.send("ERROR")  
+})
+
+app.get("/getblogposts", (req, res) => {
+  res.json(JSON.parse(fs.readFileSync("./blogposts.json", "utf-8")));
 })
 
 app.get("/:fileName/:DiggaIchWill", (req, res) => {
@@ -38,14 +69,6 @@ app.get("/:fileName/:DiggaIchWill", (req, res) => {
   }
 })
 
-app.post("/setTableData:/Person", (req, res) => {
-  const newData = req.body;
-    if (allowed.includes(req.params.Person.replace(":", ""))) {
-    fs.writeFileSync(JSON.stringify(newData, null, 2));
-    res.send("DONE")  
-  }
-  res.send("ERROR")  
-})
 
 app.listen(5009, console.log("Geschichte Running"));
   

@@ -146,6 +146,7 @@
     place-items: center;
     justify-content: center;
     position: relative;
+
 }
 
 .FortschrittLabel {
@@ -162,6 +163,11 @@
     place-items: center;
 }
 
+.marginMore {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 .Tabelle {
     width: 80%;
     aspect-ratio: auto;
@@ -175,6 +181,8 @@ table {
     text-align: center;
     background-color: #030c2f;
     min-height: 70vh;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 thead tr *, tbody tr * {
@@ -193,13 +201,31 @@ tr {
     border: none;
 }
 
-@media only screen and (max-width: 600px) {
-    .DokumenteWrapper {
-        height: calc(70vh - 20px);
+@media all and (max-width: 900px) {
+    table {
+        width: 100%;
+        text-align: center;
+        background-color: #030c2f;
+        min-height: 70vh;
     }
 }
 
-@media all and (max-width: 480px) {
+@media all and (max-width: 800px) {
+    table {
+        width: 100%;
+        text-align: center;
+        background-color: #030c2f;
+        min-height: 70vh;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    .TopBanner h1 {
+        font-size: 1rem;
+    }
+}
+
+@media all and (max-width: 887px) {
     .Dokument {
         min-width: 100px;
         width: 100%;
@@ -208,9 +234,7 @@ tr {
     }
     .Dokumente {
         width: 100%;
-    }
-    .TopBanner h1 {
-        font-size: 1rem;
+        margin-bottom: 40px;
     }
 }
 
@@ -235,5 +259,8 @@ tr {
     }
     .Tabelle {
         width: 95%;
+    }
+    thead tr *, tbody tr * {
+        font-size: 15px;
     }
 }
