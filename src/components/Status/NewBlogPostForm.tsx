@@ -71,13 +71,14 @@ const NewBlogPostForm:React.FC<Props> = (Props:Props):JSX.Element => {
                 <div style={{display: "flex", justifyContent:"center", placeItems:"center", flexDirection: "column"}}>
                     <div className="Check">
                         <input type="checkbox" checked={isAccepted} onChange={() => {}} onClick={() => setAccepted(!isAccepted)}></input>
-                        <p id="consent">Neuen Eintrag unter <span style={{fontWeight: "bold"}}>{localStorage.getItem("user")}</span> posten?</p>
+                        <p id="consent">Bestätigen: Beitrag posten?</p>
                     </div>
                     <button className="navButton" id="send" onClick={() => {
                         check() && axios.post("https://api.klasse10c.de/createblogpost/"+localStorage.getItem("user"), {
                             "Überschrift": localStorage.getItem("Überschrift"),
                             "Beschreibung": localStorage.getItem("Beschreibung"),
-                            "Image": bas
+                            "Image": bas,
+                            "user": localStorage.getItem("user")
                         }).then(response => {
                             if (response.data === "DONE") {
                                 alert("Neuer Eintrag wurde abgeschickt und ist ab jetzt auf der Website verfügbar!")
