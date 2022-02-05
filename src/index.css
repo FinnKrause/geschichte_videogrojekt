@@ -67,6 +67,7 @@ table {
  /* width */
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
 /* Track */
@@ -84,3 +85,7 @@ table {
 ::-webkit-scrollbar-thumb:hover {
   background: #FF4A49;
 } 
+
+::-webkit-scrollbar-corner {
+  background: rgba(0,0,0,0);
+}

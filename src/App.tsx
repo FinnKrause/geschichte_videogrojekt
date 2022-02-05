@@ -4,7 +4,7 @@ import Status from './components/Status/Status';
 
 import Top from "./components/Top/Top";
 
-type Namen = "alena" | "arda" | "carla" | "christian" | "christoph" | "dulce" | "elena" | "finn" | "marthinus" | "hendrik" | "leopold" | "lucas" | "marleen" | "marlene" | "moritz" | "sanna" | "sophia | florian"
+type Namen = "alena" | "arda" | "carla" | "christian" | "christoph" | "dulce" | "elena" | "finn" | "marthinus" | "hendrik" | "leopold" | "lucas" | "marleen" | "marlene" | "moritz" | "sanna" | "sophia" | "florian"
 const allowed:Array<any> = ["alena" , "arda" , "carla" , "christian" , "christoph" , "dulce" , "elena" , "finn" , "marthinus" , "hendrik" , "leopold" , "lucas" , "marleen" , "marlene" , "moritz" , "sanna" , "sophia", "florian"]
 
 const App: React.FC = (): JSX.Element => {

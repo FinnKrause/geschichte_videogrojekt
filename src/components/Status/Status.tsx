@@ -47,14 +47,14 @@ const RealStatusSeite:React.FC = ():JSX.Element => {
     const [tableData, setTableData] = useState<Lehrer[]|undefined>();
 
     const Dokumente:DokumentInterface[] = [
-        {name: "Abhakblatt für Interviews", downloadLink: "https://api.klasse10c.de/:abhaken/Abhaken"},
-        {name: "Anmeldeformular (Schüler)", downloadLink: "https://api.klasse10c.de/:lehrer/Anmeldeformular (Schüler)"},
-        {name: "Anmeldeformular (Lehrer)", downloadLink: "https://api.klasse10c.de/:eltern/Anmeldeformular (Lehrer)"},
-        {name: "Fragenkatalog - BRD", downloadLink: "https://api.klasse10c.de/:brd/Fragenkatalog - BRD"},
-        {name: "Fragenkatalog - DDR", downloadLink: "https://api.klasse10c.de/:ddr/Fragenkatalog - DDR"},
-        {name: "Fragenkatalog - Komplett", downloadLink: "https://api.klasse10c.de/:full/Fragenkatalog - Komplett"},
-        {name: "Tipps für das Interview", downloadLink: "https://api.klasse10c.de/:tipps/Tipps für das Interview"},
-        {name: "Checkliste vor Dreh", downloadLink: "https://api.klasse10c.de/:checkliste/Interview Checkliste"},
+        {name: "Abhakblatt für Interviews", downloadLink: `https://api.klasse10c.de/:abhaken/${localStorage.getItem("user")}/Abhaken`},
+        {name: "Anmeldeformular (Schüler)", downloadLink: `https://api.klasse10c.de/:lehrer/${localStorage.getItem("user")}/Anmeldeformular (Schüler)`},
+        {name: "Anmeldeformular (Lehrer)", downloadLink: `https://api.klasse10c.de/:eltern/${localStorage.getItem("user")}/Anmeldeformular (Lehrer)`},
+        {name: "Fragenkatalog - BRD", downloadLink: `https://api.klasse10c.de/:brd/${localStorage.getItem("user")}/Fragenkatalog - BRD`},
+        {name: "Fragenkatalog - DDR", downloadLink: `https://api.klasse10c.de/:ddr/${localStorage.getItem("user")}/Fragenkatalog - DDR`},
+        {name: "Fragenkatalog - Komplett", downloadLink: `https://api.klasse10c.de/:full/${localStorage.getItem("user")}/Fragenkatalog - Komplett`},
+        {name: "Tipps für das Interview", downloadLink: `https://api.klasse10c.de/:tipps/${localStorage.getItem("user")}/Tipps für das Interview`},
+        {name: "Checkliste vor Dreh", downloadLink: `https://api.klasse10c.de/:checkliste/${localStorage.getItem("user")}/Interview Checkliste`},
     ]
 
     useEffect(() => {

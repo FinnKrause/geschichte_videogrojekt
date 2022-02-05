@@ -201,6 +201,10 @@ tr {
     border: none;
 }
 
+#notbordered:hover {
+    fill: #00b341;
+}
+
 @media all and (max-width: 900px) {
     table {
         width: 100%;
