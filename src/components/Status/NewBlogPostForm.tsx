@@ -111,7 +111,7 @@ const NewBlogPostForm:React.FC<Props> = (Props:Props):JSX.Element => {
                         check() && axios.post("https://api.klasse10c.de/createblogpost/"+localStorage.getItem("user"), {
                             "Überschrift": localStorage.getItem("Überschrift"),
                             "Beschreibung": localStorage.getItem("Beschreibung"),
-                            "Image": [bas],
+                            "Image": bas,
                             "user": localStorage.getItem("user")
                         }).then(response => {
                             if (response.data === "DONE") {
