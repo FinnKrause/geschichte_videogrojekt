@@ -57,7 +57,7 @@
 
 @media all and (max-width: 1000px) {
     .BehindTheScenes {
-        flex-direction: column;
+        flex-direction: column !important;
         justify-content: center;
         place-items: center;
         height: fit-content;
