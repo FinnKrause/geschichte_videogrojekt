@@ -14,7 +14,7 @@ const BehindTheScenes:React.FC<Props> =(Props:Props):JSX.Element => {
         console.log(Props.Bild.length)
     })
     return (
-        <div className="BehindTheScenes" style={{backgroundColor: Props.otherColor ? "#030c2f" : "#FF4A49"}}>
+        <div className="BehindTheScenes" style={{backgroundColor: Props.otherColor ? "#030c2f" : "#FF4A49", flexDirection: Props.otherColor ? "row" : "row-reverse"}}>
             <div className="leftB">
                 <div className="leftContent">
                     <h1>{Props.Header}</h1>
