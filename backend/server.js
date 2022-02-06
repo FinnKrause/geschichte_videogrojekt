@@ -56,8 +56,9 @@ app.post("/setTableData:/person", (req, res) => {
   res.send("ERROR")
 })
 
-app.get("/getblogposts", (req, res) => {
-  res.json(JSON.parse(fs.readFileSync("./blogposts.json", "utf-8")));
+app.get("/getblogposts/:joke", (req, res) => {
+  if (req.params.joke === "true") res.json(JSON.parse(fs.readFileSync("./blogposts_byChristoph.json", "utf-8")));
+  else res.json(JSON.parse(fs.readFileSync("./blogposts.json", "utf-8")));
 })
 
 app.get("/:fileName/:person/:DiggaIchWill", (req, res) => {
@@ -75,7 +76,6 @@ app.get("/:fileName/:person/:DiggaIchWill", (req, res) => {
     default: res.send("Digga du Huan versuch ned meine Seite zu hacken! Piss dich!");l("Hacker",person); break;
   }
 })
-
 
 app.listen(5009, console.log("Geschichte Running"));
   

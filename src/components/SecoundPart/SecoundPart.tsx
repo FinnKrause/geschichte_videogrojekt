@@ -4,7 +4,7 @@ import BehindTheScenes from "./BehindTheScenes/BehindTheScenes";
 import "./SecoundPart.css";
 
 interface Props {
-
+    joke: boolean
 }
 
 interface ResponseType {
@@ -20,11 +20,11 @@ const SecoundPart:React.FC<Props> = (Props: Props):JSX.Element => {
     const [loading, setloading] = useState<boolean>(true);
 
     useEffect(() => {
-        Axios.get("https://api.klasse10c.de/getblogposts/").then(response => {
+        Axios.get(`https://api.klasse10c.de/getblogposts/${Props.joke ? "true":"false"}`).then(response => {
             setData(response.data);
             setloading(false);
         })
-    }, [])
+    }, [Props.joke])
     
     return (
         <div className="SecoundPart">

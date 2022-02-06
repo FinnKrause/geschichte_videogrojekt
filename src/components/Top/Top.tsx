@@ -8,6 +8,7 @@ import SecoundPart from '../SecoundPart/SecoundPart';
 interface Props {
     isLogin: boolean;
     setLogin: (newval: boolean) => void
+    joke: boolean;
 }
 
 const Top: React.FC<Props> = (Props): JSX.Element => {
@@ -15,7 +16,7 @@ const Top: React.FC<Props> = (Props): JSX.Element => {
         <div id="TOP">
             <NavBar isLogin={Props.isLogin} setLogin={Props.setLogin}/>
             <ContentTop/>
-            <SecoundPart/>
+            <SecoundPart joke={Props.joke}/>
         </div>
     )
 }

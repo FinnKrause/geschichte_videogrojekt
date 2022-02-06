@@ -36,7 +36,7 @@
 .rightB {
     max-width: 80%;
     margin-right: 30px;
-    height: 100%;
+    height: 70%;
     overflow: scroll;
 
     display: flex;
@@ -45,10 +45,9 @@
 }
 
 .BehindTheScenesPhoto {
-    height: 70%;
+    height: 100%;
     aspect-ratio:auto;
     border-radius: 10px;
-    
 }
 
 .user {
@@ -65,6 +64,10 @@
         padding-top: 40px;
         padding-bottom: 60px;
     }
+    .leftContent {
+        width: fit-content;
+        max-width: 90%;
+    }
     .BehindTheScenesPhoto {
         width: 100%;
         height: 100%;
@@ -72,12 +75,14 @@
     .leftB {
         height: fit-content;
         margin-top: 30px;
+        width: 80%;
     }
     .rightB {
         margin: 0;
         margin-top: 30px;
         width: 70%;
     }
+
 }
 
 @media all and (max-width: 600px) {
