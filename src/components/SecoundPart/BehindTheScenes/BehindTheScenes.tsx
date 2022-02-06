@@ -19,7 +19,7 @@ const BehindTheScenes:React.FC<Props> =(Props:Props):JSX.Element => {
                 <div className="leftContent">
                     <h1>{Props.Header}</h1>
                     <p>{Props.Beschreibung}</p>
-                    <p className="user">Ⓒ{Props.user.substr(0,1).toUpperCase()+Props.user.substr(1,Props.user.length)}</p>
+                    <p className="user">©{Props.user.substr(0,1).toUpperCase()+Props.user.substr(1,Props.user.length)}</p>
                 </div>
             </div>
             <div className="rightB">
