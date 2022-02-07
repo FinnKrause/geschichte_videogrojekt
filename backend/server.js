@@ -18,7 +18,7 @@ const getPerson = (req) => req.params.person ? req.params.person.replace(":", ""
 app.use(express.static("public"));
 
 const path = "/NAS/Finn/Schule/10C/Geschichte/Film/DokumenteForDownload/"
-const allowed = ["alena" , "arda" , "carla" , "christian" , "christoph" , "dulce" , "elena" , "finn" , "marthinus" , "hendrik" , "leopold" , "lucas" , "marleen" , "marlene" , "moritz" , "sanna" , "sophia", "florian"]
+const allowed = ["alena" , "arda" , "carla" , "christian" , "christoph" , "dulce" , "elena" , "finn" , "marthinus" , "hendrik" , "leopold" , "lucas" , "marleen" , "marlene" , "moritz" , "sanna" , "sophia", "florian", "app"]
 
 const g = (dateiname) => path+dateiname
 const l = (filename, person) => {
@@ -45,15 +45,14 @@ app.post("/createblogpost/:person", (req, res) => {
   res.send("DONE")
 })
 
-app.post("/setTableData:/person", (req, res) => {
+app.post("/setTableData/:person", (req, res) => {
   const person = getPerson(req);
-  const newData = req.body;
-    if (allowed.includes(req.params.person.replace(":", ""))) {
-    fs.writeFileSync(JSON.stringify(newData, null, 2));
-    console.log(person + "updated the table!")
-    res.send("DONE")  
+  if (allowed.includes(req.params.person.replace(":", ""))) {
+    fs.writeFileSync("./table.json", JSON.stringify(req.body, null, 2));
+    console.log("["+person+"] updated the table!")
+    res.send("DONE")
+    return;
   }
-  res.send("ERROR")
 })
 
 app.get("/getblogposts/:joke", (req, res) => {
