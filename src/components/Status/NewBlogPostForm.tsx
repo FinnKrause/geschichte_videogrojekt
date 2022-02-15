@@ -115,7 +115,7 @@ const NewBlogPostForm:React.FC<Props> = (Props:Props):JSX.Element => {
                             "user": localStorage.getItem("user")
                         }).then(response => {
                             if (response.data === "DONE") {
-                                alert("Neuer Eintrag wurde abgeschickt und ist ab jetzt auf der Website verfügbar!")
+                                alert("Neuer Eintrag wurde abgeschickt und wird jetzt demnächst von Leopold oder Finn gecheckt! Sobald einer drüber geschaut hat, sind sie dann öffentlich auf der Website zu finden!")
                                 setSending(false);
                                 localStorage.setItem("Überschrift", "");
                                 localStorage.setItem("Beschreibung", "");

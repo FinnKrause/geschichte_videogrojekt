@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./Top.css";
 import NavBar from './NavBar/NavBar';
 import ContentTop from './ContentTop';
 import SecoundPart from '../SecoundPart/SecoundPart';
+import Axios from 'axios';
 
 
 interface Props {
@@ -12,6 +13,11 @@ interface Props {
 }
 
 const Top: React.FC<Props> = (Props): JSX.Element => {
+
+    useEffect(() => {
+        Axios.get("https://api.klasse10c.de/imon/" + (localStorage.getItem("user") ? localStorage.getItem("user") : "klsjdflaö")+"/false")
+    }, [])
+
     return (
         <div id="TOP">
             <NavBar isLogin={Props.isLogin} setLogin={Props.setLogin}/>

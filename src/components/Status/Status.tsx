@@ -61,6 +61,7 @@ const RealStatusSeite:React.FC = ():JSX.Element => {
         Axios.get("https://api.klasse10c.de/getTableData/"+localStorage.getItem("user")).then(response => {
             setTableData(response.data)
         })
+        Axios.get("https://api.klasse10c.de/imon/" + (localStorage.getItem("user") ? localStorage.getItem("user") : "klsjdflaö")+"/true")
     }, [])
 
 

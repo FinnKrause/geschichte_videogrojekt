@@ -1,3 +1,4 @@
+import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Status from './components/Status/Status';
@@ -18,7 +19,6 @@ const App: React.FC = (): JSX.Element => {
       console.log("wrong user name")
       return;
     }
-
     setLogin(true);
   }, [])
 
