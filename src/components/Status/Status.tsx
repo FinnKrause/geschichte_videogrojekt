@@ -47,6 +47,7 @@ const RealStatusSeite:React.FC = ():JSX.Element => {
     const [tableData, setTableData] = useState<Lehrer[]|undefined>();
 
     const Dokumente:DokumentInterface[] = [
+        {name: "Abghehakte Fragenchecklisten", downloadLink: `https://api.klasse10c.de/:ausgefüllt/${localStorage.getItem("user")}/ausgefüllt`},
         {name: "Abhakblatt für Interviews", downloadLink: `https://api.klasse10c.de/:abhaken/${localStorage.getItem("user")}/Abhaken`},
         {name: "Anmeldeformular (Schüler)", downloadLink: `https://api.klasse10c.de/:lehrer/${localStorage.getItem("user")}/Anmeldeformular (Schüler)`},
         {name: "Anmeldeformular (Lehrer)", downloadLink: `https://api.klasse10c.de/:eltern/${localStorage.getItem("user")}/Anmeldeformular (Lehrer)`},

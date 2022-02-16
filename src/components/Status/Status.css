@@ -53,6 +53,7 @@
 
 .Dokumente {
     height: 50vh;
+    max-width: 1600px;
     width: 100%;
     height: 100%;
     overflow: auto;
@@ -61,7 +62,6 @@
     justify-content: center;
     place-items: center;
     flex-wrap: wrap;
-
 }
 
 .Dokument {

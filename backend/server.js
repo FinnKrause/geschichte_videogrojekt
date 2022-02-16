@@ -22,9 +22,7 @@ const allowed = ["alena" , "arda" , "carla" , "christian" , "christoph" , "dulce
 
 const getIndexForName = (name, data) => {
   for (let i = 0; i < data.length; i++) {
-    if (data[i].name === name) {
-      return i;
-    }
+    if (data[i].name === name) return i;
   }
   return undefined;
 }
@@ -59,12 +57,16 @@ app.post("/createblogpost/:person", (req, res) => {
 })
 
 app.get("/getAllWaitingPosts", (req, res) => {
-  res.json(JSON.parse(fs.readFileSync("./warteliste.json")))
+  const posts = JSON.parse(fs.readFileSync("./warteliste.json"));
+  for (let i = 0; i < posts.length; i++) {
+    posts[i].Image = []
+  }
+  res.json(posts)
 })
 
 app.post("/approvePost/:postHeader", (req, res) => {
   const warteliste = JSON.parse(fs.readFileSync("./warteliste.json"))
-  console.log(req.params.postHeader)
+  console.log("Rejected: " + req.params.postHeader)
   let index = undefined;
   for (let i = 0; i < warteliste.length; i++) {
     if (warteliste[i].Überschrift === req.params.postHeader) {
@@ -85,6 +87,26 @@ app.post("/approvePost/:postHeader", (req, res) => {
   fs.writeFileSync("./warteliste.json", JSON.stringify(warteliste))
   res.json({error: false, desc: "Alles hat geklappt!"})
 
+})
+
+app.post("/declinePost/:postHeader", (req, res) => {
+  const warteliste = JSON.parse(fs.readFileSync("./warteliste.json"))
+  console.log("Rejected: " + req.params.postHeader)
+  let index = undefined;
+  for (let i = 0; i < warteliste.length; i++) {
+    if (warteliste[i].Überschrift === req.params.postHeader) {
+      index = i;
+    } else continue;
+  }
+  if (index === undefined) {
+    res.json({
+      error: true, desc: "This post was not found!"
+    })
+    return;
+  }
+  warteliste.splice(index);
+  fs.writeFileSync("./warteliste.json", JSON.stringify(warteliste))
+  res.json({error: false, desc: "Alles hat geklappt!"})
 })
 
 app.post("/setTableData/:person", (req, res) => {
@@ -144,6 +166,7 @@ app.get("/:fileName/:person/:DiggaIchWill", (req, res) => {
     case "full": res.sendFile(g("Fragenkatalog.pdf"));l(fileName,person); break;
     case "tipps": res.sendFile(g("Tipps_Zeitzeugengespräche_Umbruchszeiten.pdf"));l(fileName,person); break;
     case "checkliste": res.sendFile(g("Interview Checkliste.pdf"));l(fileName,person); break;
+    case "ausgefüllt": res.sendFile(g("Interview abghehakte Checklisten.pdf"));l(fileName,person); break;
     default: res.send("Digga du Huan versuch ned meine Seite zu hacken! Piss dich!");l("Hacker",person); break;
   }
 })
