@@ -25,7 +25,7 @@ const App: React.FC = (): JSX.Element => {
     <Router>
       <Routes>
         <Route path="/" element={<Top isLogin={login} setLogin={setLogin} joke={false}/>}></Route>
-        <Route path="/joke" element={<Top isLogin={login} setLogin={setLogin} joke={true}/>}></Route>
+        <Route path="/ich/will/den/joke/sehen" element={<Top isLogin={login} setLogin={setLogin} joke={true}/>}></Route>
         <Route path="/status" element={<Status />}></Route>
         <Route path="*" element={<Navigate to={"/"}></Navigate>}></Route>
       </Routes>

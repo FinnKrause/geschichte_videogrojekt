@@ -1,12 +1,13 @@
 .BehindTheScenes {
     display: flex;
+    overflow: hidden;
     justify-content: center;
     place-items: center;
-    height: 80vh;
+    padding: 50px;
 }
 
 .leftB {
-    width: 50%;
+    width: 40%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -34,29 +35,23 @@
 }
 
 .rightB {
-    max-width: 50%;
+    max-width: 60%;
     margin: 30px;
     height: 70%;
-    overflow: scroll;
+    overflow-x: scroll;
 
     display: flex;
     justify-content: flex-start;
     place-items: center;
 }
 
-.BehindTheScenesPhoto {
-    height: 100%;
-    aspect-ratio:auto;
-    border-radius: 10px;
-    margin-right: 20px;
-}
-
 .ImageFullScreen {
-    height: 100%;
+    max-width: 100%;
+    max-height: 750px;
     aspect-ratio: auto;
     border-radius: 10px;
-
 }
+
 
 .user {
     margin-top: 20px;
@@ -76,29 +71,43 @@
         width: fit-content;
         max-width: 90%;
     }
-    .BehindTheScenesPhoto {
-        width: 100%;
-        height: 100%;
-    }
     .leftB {
         height: fit-content;
         margin-top: 30px;
-        width: 80%;
+        width: 100%;
     }
     .rightB {
         margin: 0;
         margin-top: 30px;
-        width: 70%;
+        min-height: 40vh;
+        width: 100%;
+        max-width: unset;
+        min-height: unset;
+
+    }
+    .OneImage {
+        justify-content: center;
     }
 
 }
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 650px) {
+    .BehindTheScenes {
+        padding: 20px;
+
+    }
+    .ImageFullScreen {
+        margin-top: 30px;
+    }
     .leftContent {
         width: 90%;
+        text-align: center;
     }
     .rightB {
-        width: 90%;
+        width: 95%;
+        margin: 0;
+        max-width: none;
+        min-height: unset;
     }
 }
 

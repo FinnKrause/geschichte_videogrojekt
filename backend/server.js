@@ -14,6 +14,15 @@ app.use(bodyParser.urlencoded({limit: '950mb', extended: true}));
 app.use(bodyParser.text({limit: '950mb', extended: true}));
 
 const getPerson = (req) => req.params.person ? req.params.person.replace(":", "") : "NotLoggedIn";
+const logMessage = (message) => {
+  const date = new Date();
+  const Datumsanzeige = `[${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}] `
+  const Message = Datumsanzeige + message;
+
+  const allLogs = JSON.parse(fs.readFileSync("./logs.json", "utf-8"))
+
+  console.log(Message)
+}
 
 app.use(express.static("public"));
 
@@ -29,7 +38,7 @@ const getIndexForName = (name, data) => {
 
 const g = (dateiname) => path+dateiname
 const l = (filename, person) => {
-  console.log("File accessed: " + filename + " by " + person);
+  logMessage("File accessed: " + filename + " by " + person);
 }
 const isAllowed = (person) => {
   if (!person) return false;
@@ -39,7 +48,7 @@ const isAllowed = (person) => {
 app.get("/getTableData/:person", (req, res) => {
   const person = getPerson(req);
   if (isAllowed(person)) {
-    console.log("Got the table data by: " + person)
+    logMessage("Got the table data by: " + person)
     res.json(JSON.parse(fs.readFileSync("./table.json", "utf-8")))
   }
   else res.json({error: true})
@@ -49,7 +58,7 @@ app.post("/createblogpost/:person", (req, res) => {
   const person = getPerson(req);
   if (!isAllowed(person)) return;
   const warteliste = JSON.parse(fs.readFileSync("./warteliste.json", "utf-8"))
-  console.log("Added new Blog post to the waiting list by:  "+person)
+  logMessage("Added new Blog post to the waiting list by:  "+person)
 
   warteliste.push(req.body);
   fs.writeFileSync("./warteliste.json", JSON.stringify(warteliste));
@@ -66,10 +75,9 @@ app.get("/getAllWaitingPosts", (req, res) => {
 
 app.post("/approvePost/:postHeader", (req, res) => {
   const warteliste = JSON.parse(fs.readFileSync("./warteliste.json"))
-  console.log("Rejected: " + req.params.postHeader)
   let index = undefined;
   for (let i = 0; i < warteliste.length; i++) {
-    if (warteliste[i].Überschrift === req.params.postHeader) {
+    if (warteliste[i].Überschrift === req.params.postHeader.replace(":", "")) {
       index = i;
     } else continue;
   }
@@ -77,21 +85,29 @@ app.post("/approvePost/:postHeader", (req, res) => {
     res.json({
       error: true, desc: "This post was not found!"
     })
+    logMessage("Tried to accept: " + req.params.postHeader)
     return;
   }
   const betreffenderPost = warteliste[index];
   const BlogPosts = JSON.parse(fs.readFileSync("./blogposts.json", "utf-8"))
   BlogPosts.push(betreffenderPost);
-  warteliste.splice(index);
-  fs.writeFileSync("./blogposts.json", JSON.stringify(BlogPosts))
-  fs.writeFileSync("./warteliste.json", JSON.stringify(warteliste))
+  
+  //Deleting the one Entrie in the waitinglist
+  const newWaitingList = []
+  for (let i = 0; i < warteliste.length; i++) {
+    if (i===index) continue;
+    newWaitingList.push(warteliste[i])
+  }
+
+  fs.writeFileSync("./blogposts.json", JSON.stringify(BlogPosts, null, 2))
+  fs.writeFileSync("./warteliste.json", JSON.stringify(newWaitingList, null, 2))
   res.json({error: false, desc: "Alles hat geklappt!"})
+  logMessage("Accepted: " + req.params.postHeader)
 
 })
 
 app.post("/declinePost/:postHeader", (req, res) => {
   const warteliste = JSON.parse(fs.readFileSync("./warteliste.json"))
-  console.log("Rejected: " + req.params.postHeader)
   let index = undefined;
   for (let i = 0; i < warteliste.length; i++) {
     if (warteliste[i].Überschrift === req.params.postHeader) {
@@ -102,18 +118,27 @@ app.post("/declinePost/:postHeader", (req, res) => {
     res.json({
       error: true, desc: "This post was not found!"
     })
+    logMessage("Tried to decline: " + req.params.postHeader)
     return;
   }
-  warteliste.splice(index);
-  fs.writeFileSync("./warteliste.json", JSON.stringify(warteliste))
+  
+  //Deleting the one Entrie in the waitinglist
+  const newWaitingList = []
+  for (let i = 0; i < warteliste.length; i++) {
+    if (i===index) continue;
+    newWaitingList.push(warteliste[i])
+  }
+  
+  fs.writeFileSync("./warteliste.json", JSON.stringify(warteliste, null, 2))
   res.json({error: false, desc: "Alles hat geklappt!"})
+  logMessage("Rejected: " + req.params.postHeader)
 })
 
 app.post("/setTableData/:person", (req, res) => {
   const person = getPerson(req);
   if (isAllowed(person)) {
     fs.writeFileSync("./table.json", JSON.stringify(req.body, null, 2));
-    console.log("["+person+"] updated the table!")
+    logMessage("["+person+"] updated the table!")
     res.send("DONE")
     return;
   }
@@ -171,5 +196,5 @@ app.get("/:fileName/:person/:DiggaIchWill", (req, res) => {
   }
 })
 
-app.listen(5009, console.log("Geschichte Running"));
+app.listen(5009, logMessage("Geschichte Running"));
   

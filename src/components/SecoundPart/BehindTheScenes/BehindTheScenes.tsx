@@ -23,11 +23,8 @@ const BehindTheScenes:React.FC<Props> =(Props:Props):JSX.Element => {
                 </div>
             </div>
             <div className="rightB">
-                {Props.Bild.length <= 1 && Props.Bild.map((i, idx) => {
-                    return <img key={idx} className="ImageFullScreen" src={i} alt="Bild"></img>
-                })}
-                {Props.Bild.length > 1 && Props.Bild.map((i, idx) => {
-                    return <img key={idx} className="BehindTheScenesPhoto" src={i} alt="Bild"></img>
+                {Props.Bild.map((i, idx) => {
+                    return <img key={idx} className={`ImageFullScreen ${Props.Bild.length <= 1 ? "OneImage" : ""}`} src={i} alt="Bild"></img>
                 })}
             </div>
         </div>
