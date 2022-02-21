@@ -1,4 +1,3 @@
-import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Status from './components/Status/Status';

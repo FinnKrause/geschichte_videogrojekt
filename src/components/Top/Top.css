@@ -44,6 +44,7 @@
 .Beschreibung {
     color: white;
     margin-top: 20px;
+    line-height: 18px;
     font-family: 'Outfit', sans-serif;
 }
 
@@ -172,4 +173,10 @@
         min-width: 100px;
         min-height: 100px;
     }
+}
+
+.spanBackground {
+    background: linear-gradient(90deg, #d1a926, #FF4A49);
+    border-radius: 2px;
+    padding: 2px
 }

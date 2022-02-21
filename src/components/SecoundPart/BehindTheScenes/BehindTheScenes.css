@@ -35,7 +35,7 @@
 
 .rightB {
     max-width: 50%;
-    margin-right: 30px;
+    margin: 30px;
     height: 70%;
     overflow: scroll;
 
@@ -48,6 +48,14 @@
     height: 100%;
     aspect-ratio:auto;
     border-radius: 10px;
+    margin-right: 20px;
+}
+
+.ImageFullScreen {
+    height: 100%;
+    aspect-ratio: auto;
+    border-radius: 10px;
+
 }
 
 .user {
