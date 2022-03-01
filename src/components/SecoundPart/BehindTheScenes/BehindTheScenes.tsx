@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./BehindTheScenes.css";
 
 interface Props {
@@ -10,9 +10,7 @@ interface Props {
 }
 
 const BehindTheScenes:React.FC<Props> =(Props:Props):JSX.Element => {
-    useEffect(() => {
-        console.log(Props.Bild.length)
-    })
+
     return (
         <div className="BehindTheScenes" style={{backgroundColor: Props.otherColor ? "#030c2f" : "#FF4A49", flexDirection: Props.otherColor ? "row" : "row-reverse"}}>
             <div className="leftB">
@@ -24,7 +22,7 @@ const BehindTheScenes:React.FC<Props> =(Props:Props):JSX.Element => {
             </div>
             <div className="rightB">
                 {Props.Bild.map((i, idx) => {
-                    return <img key={idx} className={`ImageFullScreen ${Props.Bild.length <= 1 ? "OneImage" : ""}`} src={i} alt="Bild"></img>
+                    return <img key={idx} className={`ImageFullScreen ${Props.Bild.length <= 1 ? "OneImage" : ""}`} src={i} alt="Bild" ></img>
                 })}
             </div>
         </div>

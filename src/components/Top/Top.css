@@ -6,12 +6,14 @@
     min-height: calc(100% - 80px);
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     place-items: center;
     padding: 0;
     margin: 0;
     overflow-x: hidden;
     overflow-y: visible;
+    position: relative;
 }
 
 .content {
@@ -108,6 +110,44 @@
     user-select: none;
 }
 
+.ScrollDownWrapper {
+    position: absolute;
+    bottom: 0;
+    left: auto;
+    right: auto;
+
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    flex-direction: column-reverse;
+}
+
+.scrollDownText {
+    color: white;
+    font-family: 'Oswald', sans-serif;
+}
+
+.svg {
+    stroke: #FF4A49;
+    opacity: .5;
+    animation: opa 2000ms infinite ease;
+}
+
+@keyframes opa {
+    0% {
+        opacity: .5;
+    }
+    33% {
+        opacity: .8;
+    }
+    66% {
+        opacity: .8;
+    }
+    100% {
+        opacity: .5;
+    }
+}
+
 @keyframes turning {
     0% {
         transform: rotate(-5deg);
@@ -124,6 +164,9 @@
 
 
 @media all and (max-width: 1350px) {
+    .ScrollDownWrapper {
+        display: none;
+    }
     .content {
         flex-direction: column-reverse;
         margin-top: 80px;

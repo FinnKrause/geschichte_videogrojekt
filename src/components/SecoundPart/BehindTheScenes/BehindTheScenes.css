@@ -50,11 +50,15 @@
     max-height: 750px;
     aspect-ratio: auto;
     border-radius: 10px;
+    pointer-events: none;
+    user-select: none;
 }
 
 
 .user {
     margin-top: 20px;
+    pointer-events: none;
+    user-select: none;
 }
 
 
@@ -80,7 +84,6 @@
         margin: 0;
         margin-top: 30px;
         min-height: 40vh;
-        width: 100%;
         max-width: unset;
         min-height: unset;
 
@@ -132,3 +135,4 @@
         opacity: 1;
     }
 }
+

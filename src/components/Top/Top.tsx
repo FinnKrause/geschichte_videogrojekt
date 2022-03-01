@@ -19,7 +19,7 @@ const Top: React.FC<Props> = (Props): JSX.Element => {
     }, [])
 
     return (
-        <div id="TOP">
+        <div id="TOP" onScroll={() => console.log("MOVED")}>
             <NavBar isLogin={Props.isLogin} setLogin={Props.setLogin}/>
             <ContentTop/>
             <SecoundPart joke={Props.joke}/>

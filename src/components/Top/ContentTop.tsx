@@ -20,6 +20,9 @@ const ContentTop: React.FC<Props> = (Props): JSX.Element => {
                     <img id="logo" src={require("../../assets/logo1.png")} alt="asldf"></img>
                 </div>
             </div>
+            <div className="ScrollDownWrapper">
+                <svg className="svg" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#00b341" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="12" y1="5" x2="12" y2="19" /><line x1="18" y1="13" x2="12" y2="19" /><line x1="6" y1="13" x2="12" y2="19" /></svg>
+            </div>
 
         </div>
     )

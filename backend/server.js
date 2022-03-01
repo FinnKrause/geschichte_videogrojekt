@@ -19,7 +19,7 @@ const logMessage = (message) => {
   const Datumsanzeige = `[${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}] `
   const Message = Datumsanzeige + message;
 
-  const allLogs = JSON.parse(fs.readFileSync("./logs.json", "utf-8"))
+  //const allLogs = JSON.parse(fs.readFileSync("./logs.json", "utf-8"))
 
   console.log(Message)
 }
@@ -108,9 +108,10 @@ app.post("/approvePost/:postHeader", (req, res) => {
 
 app.post("/declinePost/:postHeader", (req, res) => {
   const warteliste = JSON.parse(fs.readFileSync("./warteliste.json"))
+  const header = req.params.postHeader.replace(":", "")
   let index = undefined;
   for (let i = 0; i < warteliste.length; i++) {
-    if (warteliste[i].Überschrift === req.params.postHeader) {
+    if (warteliste[i].Überschrift === header) {
       index = i;
     } else continue;
   }
@@ -129,7 +130,7 @@ app.post("/declinePost/:postHeader", (req, res) => {
     newWaitingList.push(warteliste[i])
   }
   
-  fs.writeFileSync("./warteliste.json", JSON.stringify(warteliste, null, 2))
+  fs.writeFileSync("./warteliste.json", JSON.stringify(newWaitingList, null, 2))
   res.json({error: false, desc: "Alles hat geklappt!"})
   logMessage("Rejected: " + req.params.postHeader)
 })
