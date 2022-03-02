@@ -3,6 +3,7 @@ const fs = require("fs");
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser")
+const axios = require("axios");
 
 app.use(cors({
   origin: "*",
@@ -13,7 +14,7 @@ app.use(bodyParser.json({limit: '950mb', extended: true}));
 app.use(bodyParser.urlencoded({limit: '950mb', extended: true}));
 app.use(bodyParser.text({limit: '950mb', extended: true}));
 
-const getPerson = (req) => req.params.person ? req.params.person.replace(":", "") : "NotLoggedIn";
+const getPerson = (req) => isAllowed(req.params.person||"nichterlaubt") ? req.params.person.replace(":", "") : "NotLoggedIn";
 const logMessage = (message) => {
   const date = new Date();
   const Datumsanzeige = `[${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}] `
@@ -35,6 +36,10 @@ const getIndexForName = (name, data) => {
   }
   return undefined;
 }
+
+const getMagentaColor = (text) => {
+  return `\x1b[35m${text}\x1b[0m`;
+};
 
 const g = (dateiname) => path+dateiname
 const l = (filename, person) => {
@@ -178,6 +183,65 @@ app.get("/imon/:person/:status", (req, res) => {
   
   fs.writeFileSync("./userData.json", JSON.stringify(oldData, null, 2));
   res.json({error: false, desc: ""})
+})
+
+app.get("/clickOnVideoLink/:person", (req, res) => {
+  const person = getPerson(req);
+  const oldData = JSON.parse(fs.readFileSync("./userData.json", "utf-8"));
+  const ip = req.headers["x-real-ip"] ? req.headers["x-real-ip"].split(",")[0] : "NoIP";
+
+  const index = getIndexForName(person, oldData);
+
+  if (index===undefined) {
+    res.json({error: true, msg: "Person nicht im userData Verzeichnis!"})
+    logMessage("Person die nicht im userData Verzeichnis ist hat den Videolink gedrückt")
+    return;
+  }
+
+  axios.get("http://ip-api.com/json/"+ip).then(response => {
+    delete response.data.status
+    delete response.data.countryCode
+    delete response.data.region
+    delete response.data.lat
+    delete response.data.lon
+    delete response.data.timezone
+    delete response.data.isp
+    delete response.data.org
+    delete response.data.as
+
+    response.data["ip"] = response.data.query;
+    delete response.data.query
+
+    const resToWorkWith = response.data;
+
+    if (!oldData[index].ViewIPs) {
+      oldData[index].ViewIPs = [resToWorkWith]
+    } else {
+      let changed = false;
+      for (let i = 0; i < oldData[index].ViewIPs.length; i++) {
+        if (oldData[index].ViewIPs[i].ip === response.data.ip) {
+  
+          const obj = oldData[index].ViewIPs[i];
+          obj["videoClicks"] = !obj["videoClicks"] ? 2 : +obj["videoClicks"]+1
+          oldData[index].ViewIPs[i] = obj;
+          changed = true;
+        }
+      }
+      if (!changed) {
+        oldData[index].ViewIPs.push(resToWorkWith);
+      }
+    }
+    
+    oldData[index].videoClicks = !oldData[index].videoClicks ? 1 : oldData[index].videoClicks+1
+    
+    logMessage(`${person==="NotLoggedIn" ? "Unbekannte Person" : person} hat von ${response.data.ip} aus ${response.data.city ? (
+      (response.data.city === "Berlin") ? getMagentaColor(response.data.city): response.data.city
+    ) : "NoCity"} auf den Videolink gedrückt!`)
+    fs.writeFileSync("./userData.json", JSON.stringify(oldData, null, 2))  
+    res.json({error: false, msg: "All done!"})
+  })
+
+
 })
 
 app.get("/:fileName/:person/:DiggaIchWill", (req, res) => {

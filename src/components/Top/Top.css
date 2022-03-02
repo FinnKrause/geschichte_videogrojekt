@@ -64,10 +64,8 @@
     width: 160px;
     border-radius: 7px;
 
-    cursor: not-allowed !important;
     transition: all var(--transition-time-long);
-    /* cursor: pointer; */
-    user-select: none;
+    cursor: pointer;
 }
 
 .watchVideo:hover {
