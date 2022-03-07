@@ -17,10 +17,12 @@ app.use(bodyParser.text({limit: '950mb', extended: true}));
 const getPerson = (req) => isAllowed(req.params.person||"nichterlaubt") ? req.params.person.replace(":", "") : "NotLoggedIn";
 const logMessage = (message) => {
   const date = new Date();
-  const Datumsanzeige = `[${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}] `
+  const Datumsanzeige = `[${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}] `
   const Message = Datumsanzeige + message;
 
-  //const allLogs = JSON.parse(fs.readFileSync("./logs.json", "utf-8"))
+  const allLogs = JSON.parse(fs.readFileSync("./logs.json", "utf-8"))
+  allLogs.push({date: Datumsanzeige, message})
+  fs.writeFileSync("./logs.json", JSON.stringify(allLogs, null, 2));
 
   console.log(Message)
 }
@@ -43,7 +45,7 @@ const getMagentaColor = (text) => {
 
 const g = (dateiname) => path+dateiname
 const l = (filename, person) => {
-  logMessage("File accessed: " + filename + " by " + person);
+  logMessage(person + " accessed \"" + filename+"\"");
 }
 const isAllowed = (person) => {
   if (!person) return false;
@@ -53,7 +55,6 @@ const isAllowed = (person) => {
 app.get("/getTableData/:person", (req, res) => {
   const person = getPerson(req);
   if (isAllowed(person)) {
-    logMessage("Got the table data by: " + person)
     res.json(JSON.parse(fs.readFileSync("./table.json", "utf-8")))
   }
   else res.json({error: true})
@@ -63,7 +64,7 @@ app.post("/createblogpost/:person", (req, res) => {
   const person = getPerson(req);
   if (!isAllowed(person)) return;
   const warteliste = JSON.parse(fs.readFileSync("./warteliste.json", "utf-8"))
-  logMessage("Added new Blog post to the waiting list by:  "+person)
+  logMessage("New Blogpost ("+ req.body.Überschrift + ") by " + person + " waiting")
 
   warteliste.push(req.body);
   fs.writeFileSync("./warteliste.json", JSON.stringify(warteliste));
@@ -90,7 +91,7 @@ app.post("/approvePost/:postHeader", (req, res) => {
     res.json({
       error: true, desc: "This post was not found!"
     })
-    logMessage("Tried to accept: " + req.params.postHeader)
+    logMessage("Error in accepting \"" + req.params.postHeader + "\"")
     return;
   }
   const betreffenderPost = warteliste[index];
@@ -107,7 +108,7 @@ app.post("/approvePost/:postHeader", (req, res) => {
   fs.writeFileSync("./blogposts.json", JSON.stringify(BlogPosts, null, 2))
   fs.writeFileSync("./warteliste.json", JSON.stringify(newWaitingList, null, 2))
   res.json({error: false, desc: "Alles hat geklappt!"})
-  logMessage("Accepted: " + req.params.postHeader)
+  logMessage("Accepted new Blogpost (" + req.params.postHeader+")")
 
 })
 
@@ -124,7 +125,7 @@ app.post("/declinePost/:postHeader", (req, res) => {
     res.json({
       error: true, desc: "This post was not found!"
     })
-    logMessage("Tried to decline: " + req.params.postHeader)
+    logMessage("Error in declining \"" + req.params.postHeader +"\"")
     return;
   }
   
@@ -137,14 +138,14 @@ app.post("/declinePost/:postHeader", (req, res) => {
   
   fs.writeFileSync("./warteliste.json", JSON.stringify(newWaitingList, null, 2))
   res.json({error: false, desc: "Alles hat geklappt!"})
-  logMessage("Rejected: " + req.params.postHeader)
+  logMessage("Declined Blogpost (" + req.params.postHeader + ")")
 })
 
 app.post("/setTableData/:person", (req, res) => {
   const person = getPerson(req);
   if (isAllowed(person)) {
     fs.writeFileSync("./table.json", JSON.stringify(req.body, null, 2));
-    logMessage("["+person+"] updated the table!")
+    logMessage("Interviewstatus updated")
     res.send("DONE")
     return;
   }
@@ -159,7 +160,7 @@ app.get("/getUserData/:app", (req, res) => {
   if (req.params.app.replace(":", "").toLowerCase() === "app") {
     res.json(JSON.parse(fs.readFileSync("./userData.json")));
   }
-  else res.json({error: true})
+  else res.json({error: true, des: "Forbidden"})
 })
 
 app.get("/imon/:person/:status", (req, res) => {
@@ -244,8 +245,18 @@ app.get("/clickOnVideoLink/:person", (req, res) => {
 
 })
 
+app.get("/getAllLogs/:app", (req, res) => {
+  if (req.params.app.replace(":", "") !== "true") {
+    res.json({error: true, msg: "Forbidden"})    
+    return;
+  }
+  
+  const Logs = JSON.parse(fs.readFileSync("./logs.json", "utf8")).reverse().slice(0,50);
+  res.json(Logs)
+})
+
 app.get("/:fileName/:person/:DiggaIchWill", (req, res) => {
-  const fileName = req.params.fileName.replace(":", "") || "No filename given!";
+  const fileName = req.params.DiggaIchWill.replace(":", "") || "No filename given!";
   const person = getPerson(req);
   switch(fileName) {
     case "abhaken": res.sendFile(g("Abhaken.pdf")); break;
