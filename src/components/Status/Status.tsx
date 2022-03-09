@@ -50,7 +50,6 @@ const Status: React.FC<Props> = (Props:Props): JSX.Element => {
 }
 
 const RealStatusSeite:React.FC<Props> = (Props:Props):JSX.Element => {
-    const user = localStorage.getItem("user") || "You hacked me! Pls dont crash my Pi!";
     const [tableData, setTableData] = useState<Lehrer[]|undefined>();
 
     const Dokumente:DokumentInterface[] = [
