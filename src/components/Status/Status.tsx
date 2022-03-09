@@ -21,9 +21,14 @@ interface Lehrer {
     abgedreht: boolean;
 }
 
+interface Props {
+    isLogin: boolean;
+    setLogin: (value: boolean) => void
+}
+
 const good = <svg xmlns="http://www.w3.org/2000/svg" id="notbordered" width="30" height="30" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#00b341" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" /></svg>
 
-const Status: React.FC = (): JSX.Element => {
+const Status: React.FC<Props> = (Props:Props): JSX.Element => {
     const [loading, setLoding] = useState<boolean>(true);
 
     useEffect(() => {
@@ -37,14 +42,14 @@ const Status: React.FC = (): JSX.Element => {
     return (
         <>
             {!loading && <div>
-                <RealStatusSeite ></RealStatusSeite>
+                <RealStatusSeite isLogin={Props.isLogin} setLogin={Props.setLogin}></RealStatusSeite>
             </div>}
             {loading && <h1>Loading...</h1>}
         </>
     );
 }
 
-const RealStatusSeite:React.FC = ():JSX.Element => {
+const RealStatusSeite:React.FC<Props> = (Props:Props):JSX.Element => {
     const user = localStorage.getItem("user") || "You hacked me! Pls dont crash my Pi!";
     const [tableData, setTableData] = useState<Lehrer[]|undefined>();
 
@@ -70,9 +75,9 @@ const RealStatusSeite:React.FC = ():JSX.Element => {
 
     return (
         <div className="StatusSeite">
+            <NavBar isLogin={Props.isLogin} setLogin={Props.setLogin} hasReturnButton></NavBar>
             <div className="TopBanner moveUp">
                 <h1>PDF's</h1>
-                <p id="signedinas">Angemeldet als: {user.substr(0,1).toUpperCase()+user.substr(1,user.length)}</p>
             </div>
             <div className="DokumenteWrapper contentArea">
                 <div className="Dokumente">
