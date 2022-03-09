@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Impressum from './components/Impressum/Impressum';
 import Status from './components/Status/Status';
+import "./components/Top/Top.css";
 
 import Top from "./components/Top/Top";
 
@@ -27,6 +29,7 @@ const App: React.FC = (): JSX.Element => {
         <Route path="/" element={<Top isLogin={login} setLogin={setLogin} joke={false}/>}></Route>
         <Route path="/ich/will/den/joke/sehen" element={<Top isLogin={login} setLogin={setLogin} joke={true}/>}></Route>
         <Route path="/status" element={<Status />}></Route>
+        <Route path="/Impressum" element={<Impressum isLogin={login} setLogin={setLogin}/>}></Route>
         <Route path="*" element={<Navigate to={"/"}></Navigate>}></Route>
       </Routes>
     </Router>

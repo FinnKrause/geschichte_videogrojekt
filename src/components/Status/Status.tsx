@@ -4,6 +4,7 @@ import {allowed} from "../../App"
 import Dokument from "./Dokument";
 import Axios from "axios";
 import NewBlogPostForm from "./NewBlogPostForm";
+import NavBar from "../Top/NavBar/NavBar";
 
 
 interface DokumentInterface {

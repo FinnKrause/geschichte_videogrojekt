@@ -258,7 +258,7 @@ app.get("/getAllLogs/:app", (req, res) => {
 app.get("/:fileName/:person/:DiggaIchWill", (req, res) => {
   const fileName = req.params.DiggaIchWill.replace(":", "") || "No filename given!";
   const person = getPerson(req);
-  switch(fileName) {
+  switch(req.params.fileName.replace(":", "")||"none") {
     case "abhaken": res.sendFile(g("Abhaken.pdf")); break;
     case "eltern": res.sendFile(g("Einverstaendnis_Mitwirkung_Foto_Film_Umbruchszeiten.pdf")); l(fileName,person); break;
     case "lehrer": res.sendFile(g("Einverständniserklärung-der-Eltern_gesetzlichen-Vertretung.pdf"));l(fileName,person); break;

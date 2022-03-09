@@ -1,0 +1,21 @@
+.FooterWrapper {
+    height: 30px;
+    background-color: #F1E255;
+
+    display: flex;
+    justify-content: space-between;
+    place-items: center;
+}
+
+.Credits {
+    margin-left: 20px;
+    font-size: 15px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.Impressum {
+    margin-right: 20px;
+    color: black;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+}

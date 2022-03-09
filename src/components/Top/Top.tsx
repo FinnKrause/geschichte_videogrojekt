@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import "./Top.css";
 import NavBar from './NavBar/NavBar';
 import ContentTop from './ContentTop';
 import SecoundPart from '../SecoundPart/SecoundPart';
 import Axios from 'axios';
+import {Footer} from "../Footer/Footer";
 
 
 interface Props {
@@ -23,6 +23,7 @@ const Top: React.FC<Props> = (Props): JSX.Element => {
             <NavBar isLogin={Props.isLogin} setLogin={Props.setLogin}/>
             <ContentTop/>
             <SecoundPart joke={Props.joke}/>
+            <Footer></Footer>
         </div>
     )
 }
