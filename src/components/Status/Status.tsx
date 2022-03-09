@@ -5,6 +5,7 @@ import Dokument from "./Dokument";
 import Axios from "axios";
 import NewBlogPostForm from "./NewBlogPostForm";
 import NavBar from "../Top/NavBar/NavBar";
+import { Footer } from "../Footer/Footer";
 
 
 interface DokumentInterface {
@@ -110,6 +111,7 @@ const RealStatusSeite:React.FC = ():JSX.Element => {
                 </div>
             </div>
             <NewBlogPostForm></NewBlogPostForm>
+            <Footer></Footer>
         </div>
     );
 }

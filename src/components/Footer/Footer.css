@@ -1,5 +1,6 @@
 .FooterWrapper {
     height: 30px;
+    width: 100%;
     background-color: #F1E255;
 
     display: flex;

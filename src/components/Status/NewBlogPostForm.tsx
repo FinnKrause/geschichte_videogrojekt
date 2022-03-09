@@ -101,7 +101,7 @@ const NewBlogPostForm:React.FC<Props> = (Props:Props):JSX.Element => {
                         })}
                     </div>
                 </div>
-                <div style={{display: "flex", justifyContent:"center", placeItems:"center", flexDirection: "column"}}>
+                <div style={{display: "flex", justifyContent:"center", placeItems:"center", flexDirection: "column", paddingBottom: 30}}>
                     <div className="Check">
                         <input type="checkbox" checked={isAccepted} onChange={() => {}} onClick={() => setAccepted(!isAccepted)}></input>
                         <p id="consent">Bestätigen: Beitrag posten?</p>
