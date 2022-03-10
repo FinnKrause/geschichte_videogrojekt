@@ -16,7 +16,7 @@ const Impressum:React.FC<Props> = (Props:Props):JSX.Element => {
                     <div className="ISpalten">
                         <h1 className="infos IHeader">Impressum</h1>
                         <div className="ISpalte">
-                            <p className="infos cat">Verantwortlicher (Werbsite): </p>
+                            <p className="infos cat">Verantwortlicher (Website): </p>
                             <p className="infos info">Finn Krause</p>
                         </div>
                         <div className="ISpalte">
