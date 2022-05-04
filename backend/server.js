@@ -268,6 +268,7 @@ app.get("/:fileName/:person/:DiggaIchWill", (req, res) => {
     case "tipps": res.sendFile(g("Tipps_Zeitzeugengespräche_Umbruchszeiten.pdf"));l(fileName,person); break;
     case "checkliste": res.sendFile(g("Interview Checkliste.pdf"));l(fileName,person); break;
     case "ausgefüllt": res.sendFile(g("Interview abghehakte Checklisten.pdf"));l(fileName,person); break;
+    case "berlin": res.sendFile(g("Berlin.pdf"));l(fileName,person); break;
     default: res.send("Digga du Huan versuch ned meine Seite zu hacken! Piss dich!");l("Hacker",person); break;
   }
 })

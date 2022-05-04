@@ -53,15 +53,16 @@ const RealStatusSeite:React.FC<Props> = (Props:Props):JSX.Element => {
     const [tableData, setTableData] = useState<Lehrer[]|undefined>();
 
     const Dokumente:DokumentInterface[] = [
-        {name: "Abghehakte Fragenchecklisten", downloadLink: `https://api.klasse10c.de/:ausgefüllt/${localStorage.getItem("user")}/ausgefüllt`},
-        {name: "Abhakblatt für Interviews", downloadLink: `https://api.klasse10c.de/:abhaken/${localStorage.getItem("user")}/Abhaken`},
-        {name: "Anmeldeformular (Schüler)", downloadLink: `https://api.klasse10c.de/:lehrer/${localStorage.getItem("user")}/Anmeldeformular (Schüler)`},
-        {name: "Anmeldeformular (Lehrer)", downloadLink: `https://api.klasse10c.de/:eltern/${localStorage.getItem("user")}/Anmeldeformular (Lehrer)`},
-        {name: "Fragenkatalog - BRD", downloadLink: `https://api.klasse10c.de/:brd/${localStorage.getItem("user")}/Fragenkatalog - BRD`},
-        {name: "Fragenkatalog - DDR", downloadLink: `https://api.klasse10c.de/:ddr/${localStorage.getItem("user")}/Fragenkatalog - DDR`},
-        {name: "Fragenkatalog - Komplett", downloadLink: `https://api.klasse10c.de/:full/${localStorage.getItem("user")}/Fragenkatalog - Komplett`},
-        {name: "Tipps für das Interview", downloadLink: `https://api.klasse10c.de/:tipps/${localStorage.getItem("user")}/Tipps für das Interview`},
-        {name: "Checkliste vor Dreh", downloadLink: `https://api.klasse10c.de/:checkliste/${localStorage.getItem("user")}/Interview Checkliste`},
+        // {name: "Abghehakte Fragenchecklisten", downloadLink: `https://api.klasse10c.de/:ausgefüllt/${localStorage.getItem("user")}/ausgefüllt`},
+        // {name: "Abhakblatt für Interviews", downloadLink: `https://api.klasse10c.de/:abhaken/${localStorage.getItem("user")}/Abhaken`},
+        // {name: "Anmeldeformular (Schüler)", downloadLink: `https://api.klasse10c.de/:lehrer/${localStorage.getItem("user")}/Anmeldeformular (Schüler)`},
+        // {name: "Anmeldeformular (Lehrer)", downloadLink: `https://api.klasse10c.de/:eltern/${localStorage.getItem("user")}/Anmeldeformular (Lehrer)`},
+        // {name: "Fragenkatalog - BRD", downloadLink: `https://api.klasse10c.de/:brd/${localStorage.getItem("user")}/Fragenkatalog - BRD`},
+        // {name: "Fragenkatalog - DDR", downloadLink: `https://api.klasse10c.de/:ddr/${localStorage.getItem("user")}/Fragenkatalog - DDR`},
+        // {name: "Fragenkatalog - Komplett", downloadLink: `https://api.klasse10c.de/:full/${localStorage.getItem("user")}/Fragenkatalog - Komplett`},
+        // {name: "Tipps für das Interview", downloadLink: `https://api.klasse10c.de/:tipps/${localStorage.getItem("user")}/Tipps für das Interview`},
+        // {name: "Checkliste vor Dreh", downloadLink: `https://api.klasse10c.de/:checkliste/${localStorage.getItem("user")}/Interview Checkliste`},
+        {name: "Datenschutz für Berlinreise0", downloadLink: `https://api.klasse10c.de/:berlin/${localStorage.getItem("user")}/BerlinTour Datenschutz`}
     ]
 
     useEffect(() => {
