@@ -18,13 +18,14 @@
     display: grid;
     place-items: center;
     font-family: 'Oswald', sans-serif;
-    
+
     position: relative;
 }
 
 .moveUp {
     background-position: center -200px;
 }
+
 .TopBanner h1 {
     font-size: 4rem;
     letter-spacing: 8px;
@@ -51,11 +52,11 @@
 
 .Dokumente {
     height: 50vh;
-    max-width: 1600px;
+    width: 1600px;
     width: 100%;
     height: 100%;
     overflow: auto;
-    
+
     display: flex;
     justify-content: center;
     place-items: center;
@@ -75,6 +76,7 @@
     justify-content: center;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
+
 .left {
     display: flex;
     place-items: center;
@@ -100,7 +102,7 @@
 
 }
 
-.middle > * {
+.middle>* {
     margin-left: 10px;
 }
 
@@ -122,12 +124,12 @@
     width: fit-content;
     text-align: center;
     transition: all var(--transition-time-short);
-    
+
 }
 
 .middle button:hover {
     color: #FF4A49;
-    background-color: white;    
+    background-color: white;
 }
 
 .right {
@@ -185,12 +187,30 @@ table {
     margin-bottom: 30px;
 }
 
-thead tr *, tbody tr * {
+thead tr *,
+tbody tr * {
     color: white;
     border: 2px solid rgb(100, 100, 100);
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     vertical-align: middle;
+}
+
+tbody tr:hover td {
+    border: none;
+}
+
+tbody tr:hover {
+    transform: scale(1.05);
+    background-color: #02061a;
+}
+
+tbody tr:hover td:first-child {
+    border-radius: 10px 0px 0px 10px;
+}
+
+tbody tr:hover td:last-child {
+    border-radius: 0px 10px 10px 0px;
 }
 
 tr {
@@ -236,6 +256,7 @@ tr {
         margin: 0;
         margin-top: 20px;
     }
+
     .Dokumente {
         width: 100%;
         margin-bottom: 40px;
@@ -248,23 +269,29 @@ tr {
         margin-top: 10px;
         margin-bottom: 10px;
     }
+
     .Dokument {
         flex-direction: column;
         justify-content: space-evenly;
         min-height: 200px;
         height: fit-content;
     }
+
     .middle {
         place-items: center;
         margin-bottom: 10px;
     }
+
     .middle h1 {
         font-size: 20px;
     }
+
     .Tabelle {
         width: 95%;
     }
-    thead tr *, tbody tr * {
+
+    thead tr *,
+    tbody tr * {
         font-size: 15px;
     }
 }

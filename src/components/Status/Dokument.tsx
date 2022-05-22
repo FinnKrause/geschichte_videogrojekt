@@ -5,10 +5,10 @@ interface Props {
     downloadLink: string;
 }
 
-const Dokument:React.FC<Props> = (Props):JSX.Element => {
+const Dokument: React.FC<Props> = (Props): JSX.Element => {
 
     return (
-        <div className="Dokument"> 
+        <div className="Dokument">
             <div className="left">
                 <img className="Vorschaubild" src={require("../../assets/file.png")} alt="FileImage"></img>
             </div>
