@@ -13,7 +13,7 @@ const BerlinPage: React.FC<Props> = ({ TimeLineEvents }: Props): JSX.Element => 
                 <ul>
                     {TimeLineEvents?.map(((i, idx) => (
                         <li key={idx}>
-                            <div className="BerlinTimeLine-contentssssss">
+                            <div className="BerlinTimeLine-content">
                                 <h3 className="date">{i.date}</h3>
                                 <h1>{i.header}</h1>
                                 <p>{i.content}</p>
