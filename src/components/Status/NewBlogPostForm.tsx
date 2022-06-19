@@ -66,11 +66,7 @@ const NewBlogPostForm: React.FC<Props> = (Props: Props): JSX.Element => {
     }
 
     const removeIndex = (idx: number) => {
-        const newArr = []
-        for (let i = 0; i < bas.length; i++) {
-            if (i === idx) continue;
-            newArr.push(bas[i])
-        }
+        const newArr = bas.filter((_,i)=>i!==idx)
         setBas(newArr);
     }
 

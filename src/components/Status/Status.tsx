@@ -57,6 +57,8 @@ const RealStatusSeite: React.FC<Props> = (Props: Props): JSX.Element => {
     const currentUser = localStorage.getItem("user");
 
     const Dokumente: DokumentInterface[] = [
+        
+        { name: "Zugtickets", downloadLink: `https://api.klasse10c.de/:zugtickets/${currentUser}/Zugtickets` },
         { name: "Datenschutz für Berlinreise", downloadLink: `https://api.klasse10c.de/:berlin/${currentUser}/BerlinTour Datenschutz` },
         { name: "Abghehakte Fragenchecklisten", downloadLink: `https://api.klasse10c.de/:ausgefüllt/${currentUser}/ausgefüllt` },
         { name: "Abhakblatt für Interviews", downloadLink: `https://api.klasse10c.de/:abhaken/${currentUser}/Abhaken` },
