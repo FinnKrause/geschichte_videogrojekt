@@ -17,6 +17,7 @@ app.use(bodyParser.text({ limit: '950mb', extended: true }));
 app.use(express.static("public"));
 
 const getPerson = (req) => isAllowed(req.params.person || "nichterlaubt") ? req.params.person.replace(":", "") : "NotLoggedIn";
+
 const logMessage = (message) => {
   const date = new Date();
   const Datumsanzeige = `[${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}] `
@@ -269,6 +270,7 @@ app.get("/:fileName/:person/:DiggaIchWill", (req, res) => {
     case "checkliste": res.sendFile(g("Interview Checkliste.pdf")); l(fileName, person); break;
     case "ausgefüllt": res.sendFile(g("Interview abghehakte Checklisten.pdf")); l(fileName, person); break;
     case "berlin": res.sendFile(g("Berlin.pdf")); l(fileName, person); break;
+    case "zugtickets": res.sendFile(g("Zugtickets.pdf")); l(fileName, person); break;
     default: res.send("Digga du Huan versuch ned meine Seite zu hacken! Piss dich!"); l("Hacker", person); break;
   }
 })
@@ -297,4 +299,4 @@ app.post("/setBerlinTour/:user", (req, res) => {
 
 });
 
-app.listen(5009, logMessage("Geschichte Running"));
+app.listen(7777, logMessage("Geschichte Running")); //5009

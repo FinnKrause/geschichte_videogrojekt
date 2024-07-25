@@ -57,7 +57,6 @@ const RealStatusSeite: React.FC<Props> = (Props: Props): JSX.Element => {
     const currentUser = localStorage.getItem("user");
 
     const Dokumente: DokumentInterface[] = [
-        
         { name: "Zugtickets", downloadLink: `https://api.klasse10c.de/:zugtickets/${currentUser}/Zugtickets` },
         { name: "Datenschutz für Berlinreise", downloadLink: `https://api.klasse10c.de/:berlin/${currentUser}/BerlinTour Datenschutz` },
         { name: "Abghehakte Fragenchecklisten", downloadLink: `https://api.klasse10c.de/:ausgefüllt/${currentUser}/ausgefüllt` },
@@ -77,7 +76,7 @@ const RealStatusSeite: React.FC<Props> = (Props: Props): JSX.Element => {
         })
         Axios.get("https://api.klasse10c.de/imon/" + (currentUser ? currentUser : "klsjdflaö") + "/true")
         Axios.get("https://api.klasse10c.de/getBerlinTour/finn").then(res => setTimeLineEvents(res.data.data)).catch(console.log)
-    }, [])
+    }, [currentUser])
 
 
     return (
